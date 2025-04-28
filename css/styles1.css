@@ -1,0 +1,177 @@
+.container {
+    /* Previous styles */
+    max-width: 450px;
+    margin: auto;
+    margin-top: 50px; /* Changed from 180px to 50px to move up */
+    align-items: center;
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    background: transparent;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    
+    /* New positioning */
+    position: relative;
+    top: -50px; /* Pulls the form up by 50px */
+}
+
+/* Optional: Adjust body alignment if needed */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changed from center to flex-start */
+    min-height: 100vh;
+    background: url(../images/backg.jpg) no-repeat;
+    background-size: cover;
+    padding-top: 30px; /* Adds small padding at top */
+}
+h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 500;
+}
+
+input {
+    width: 95%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid orange;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ff8c00;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+a {
+    color: orange;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ff8c00;
+}
+
+.error {
+    color: #ff6b6b;
+    background: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-left: 3px solid #ff6b6b;
+}
+
+.success {
+    color: #51cf66;
+    background: rgba(81, 207, 102, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-left: 3px solid #51cf66;
+}
+
+/* Radio button styles */
+.radio-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+}
+
+.radio-option input[type="radio"] {
+    width: auto;
+    margin-right: 8px;
+    accent-color: orange;
+}
+
+.radio-option label {
+    margin-bottom: 0;
+    color: white;
+}
+
+/* OTP input specific styles */
+.otp-input {
+    letter-spacing: 2px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+        width: 85%;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    input, button {
+        padding: 10px;
+    }
+}
