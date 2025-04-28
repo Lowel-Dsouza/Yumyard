@@ -30,7 +30,15 @@ require 'vendor/autoload.php'; // Path to autoload.php
                 $row=mysqli_fetch_assoc($res);
                 $food=$row['food'];
                 $price=$row['price'];
-                $qty=$row['qty'];
+                if (is_numeric($row['qty'])) {
+                    $qty = $row['qty'];
+                    $price_to_store = $row['price'];
+                } else {
+                    $qty = 1;
+                    $price_to_store = $row['total']; // Because cart order total is already final
+                }
+                
+
                 $status=$row['status'];
                 $customer_name=$row['customer_name'];
                 $customer_contact=$row['customer_contact'];
@@ -61,17 +69,14 @@ require 'vendor/autoload.php'; // Path to autoload.php
                     ?>
                     <input type="hidden" name="price" value="<?php echo $price_to_store; ?>">
 
+
                 </tr>
                 <tr>
                     <td>Qty:</td>
-                    <td>
-                        <?php if(is_numeric($qty)): ?>
-                            <input type="number" name="qty"  value="<?php echo $qty; ?>">
-                        <?php else: ?>
-                            <input  type="hidden" name="qty" value="<?php echo $qty; ?>">
-                            <b><?php echo $qty; ?></b>
-                        <?php endif; ?>
-                    </td>
+                        <td>
+                            <input type="number" name="qty" value="<?php echo $qty; ?>" min="1" required>
+                        </td>
+
 
                 </tr>
                 <tr>
@@ -129,12 +134,7 @@ require 'vendor/autoload.php'; // Path to autoload.php
             $qty = $_POST['qty'];
             $old_status = $status; // Get the old status before update
 
-            // Calculate total
-            if (is_numeric($price) && is_numeric($qty)) {
-                $total = $price * $qty;
-            } else {
-                $total = $price;
-            }
+            $total = $price * $qty;
             
             $new_status=$_POST['status'];
             $customer_name=$_POST['customer_name'];
