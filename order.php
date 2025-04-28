@@ -160,7 +160,7 @@ if(!$cart_mode && isset($_GET['food_id'])) {
                     user_id='$user_id',
                     food='".mysqli_real_escape_string($conn, $order_summary)."',
                     price='$grand_total',
-                    qty='Multiple',
+                    qty='1',
                     total='$grand_total',
                     order_date='$order_date',
                     status='$status',
