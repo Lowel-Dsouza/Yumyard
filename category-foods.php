@@ -73,7 +73,20 @@ else
                     </p>
                     <br>
 
-                    <a href="<?php echo SITEURL;  ?>order.php?food_id=<?php echo $id;  ?>" class="btn btn-primary">Order Now</a>
+                    <div class="food-actions">
+                            <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                            
+                            <?php if(isset($_SESSION['username'])): ?>
+                                <form action="<?php echo SITEURL; ?>add-to-cart.php" method="POST" class="add-to-cart-form">
+                                    <input type="hidden" name="food_id" value="<?php echo $id; ?>">
+                                    <input type="hidden" name="price" value="<?php echo $price; ?>">
+                                    <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                                    <button type="submit" name="submit" class="btn btn-secondary">Add to Cart</button>
+                                </form>
+                            <?php else: ?>
+                                <a href="<?php echo SITEURL; ?>login.php" class="btn btn-secondary">Login to Add to Cart</a>
+                            <?php endif; ?>
+                        </div>
                 </div>
             </div>
 
