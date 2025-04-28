@@ -9,11 +9,7 @@
 
         </div>
     </section>
-    <!-- fOOD sEARCH Section Ends Here -->
-
-
-
-    <!-- fOOD MEnu Section Starts Here -->
+    
     <section class="food-menu">
         <div class="container">
             <h2 class="text-center">Food Menu</h2>
@@ -108,8 +104,6 @@
         </div>
 
     </section>
-    <!-- fOOD Menu Section Ends Here -->
-
-    <!-- social Section Starts Here -->
+    
  
     <?php include('partials-front/footer.php'); ?>

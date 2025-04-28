@@ -1,18 +1,18 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php'; // Path to autoload.php
+require 'vendor/autoload.php'; 
 include('config/constants.php');
 
-// Check if user is already logged in
+
 if(isset($_SESSION['username'])) {
     header("Location: ".SITEURL."index.php");
     exit();
 }
 
-// Handle form submission
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get form data
+   
     $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
     $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirm_password = $_POST['confirm_password'];
     $verification_method = $_POST['verification_method'];
     
-    // Validate inputs
+  
     $errors = [];
     
     if(empty($first_name)) {
@@ -54,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
        
     }
     
-    // Check if email or phone already exists
+
     $check_query = "SELECT * FROM users WHERE email = '$email' OR phone = '$phone'";
     $check_result = mysqli_query($conn, $check_query);
     
@@ -62,43 +62,43 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Email or phone number already registered";
     }
     
-    // If no errors, proceed
+   
     if(empty($errors)) {
-        // Generate OTP
+      
         $otp = rand(100000, 999999);
         $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes'));
         
-        // Hash password
+        
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
-        // Insert user data
+       
         $insert_query = "INSERT INTO users (first_name, last_name, email, phone, password, otp, otp_expiry) 
                          VALUES ('$first_name', '$last_name', '$email', '$phone', '$hashed_password', '$otp', '$otp_expiry')";
         
         if(mysqli_query($conn, $insert_query)) {
-            // Store user data in session for verification
+
             $_SESSION['signup_data'] = [
                 'email' => $email,
                 'verification_method' => $verification_method
             ];
             
-            // Send OTP
+           
             if($verification_method == 'email') {
-                // PHPMailer OTP sending
-                require 'vendor/autoload.php'; // Only include if not already at top
+             
+                require 'vendor/autoload.php';
                 
                 $mail = new PHPMailer(true);
                 try {
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'loweldsouza38@gmail.com'; // Your Gmail
-                    $mail->Password = 'comkdqphqsqwfzle'; // Google App Password
+                    $mail->Username = 'loweldsouza38@gmail.com'; 
+                    $mail->Password = 'comkdqphqsqwfzle'; 
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $mail->Port = 465;
             
                     $mail->setFrom('noreply@yourdomain.com', 'YumYard');
-                    $mail->addAddress($email); // Send to user's email
+                    $mail->addAddress($email); 
                     $mail->isHTML(true);
                     $mail->Subject = 'Your YumYard OTP';
                     $mail->Body = "Your verification code is: <b>$otp</b>";

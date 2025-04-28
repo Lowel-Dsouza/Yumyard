@@ -1,8 +1,8 @@
 .container {
-    /* Previous styles */
+    
     max-width: 450px;
     margin: auto;
-    margin-top: 50px; /* Changed from 180px to 50px to move up */
+    margin-top: 50px; 
     align-items: center;
     backdrop-filter: blur(15px);
     padding: 30px;
@@ -11,23 +11,23 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
     
-    /* New positioning */
+ 
     position: relative;
-    top: -50px; /* Pulls the form up by 50px */
+    top: -50px; 
 }
 
-/* Optional: Adjust body alignment if needed */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Changed from center to flex-start */
+    align-items: flex-start; 
     min-height: 100vh;
     background: url(../images/backg.jpg) no-repeat;
     background-size: cover;
-    padding-top: 30px; /* Adds small padding at top */
+    padding-top: 30px; 
 }
 h2 {
     text-align: center;
@@ -128,7 +128,7 @@ a:hover {
     border-left: 3px solid #51cf66;
 }
 
-/* Radio button styles */
+
 .radio-group {
     display: flex;
     gap: 15px;
@@ -151,7 +151,7 @@ a:hover {
     color: white;
 }
 
-/* OTP input specific styles */
+
 .otp-input {
     letter-spacing: 2px;
     font-size: 18px;
@@ -159,7 +159,7 @@ a:hover {
     font-weight: bold;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 480px) {
     .container {
         padding: 20px;

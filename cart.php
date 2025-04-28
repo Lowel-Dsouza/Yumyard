@@ -9,7 +9,7 @@ if(!isset($_SESSION['username'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Handle item removal
+
 if(isset($_GET['remove_id'])) {
     $remove_id = $_GET['remove_id'];
     $delete_query = "DELETE FROM tbl_shopping_cart WHERE id = $remove_id AND user_id = $user_id";
@@ -22,7 +22,7 @@ if(isset($_GET['remove_id'])) {
     }
 }
 
-// Handle quantity update
+
 if(isset($_POST['update_quantity'])) {
     $cart_id = $_POST['cart_id'];
     $new_quantity = $_POST['quantity'];
@@ -41,7 +41,7 @@ if(isset($_POST['update_quantity'])) {
     exit();
 }
 
-// Get cart items
+
 $cart_query = "SELECT c.*, f.title, f.image_name 
               FROM tbl_shopping_cart c
               JOIN tbl_food f ON c.food_id = f.id
@@ -121,9 +121,9 @@ $cart_res = mysqli_query($conn, $cart_query);
                     <td>
                     <?php 
                     $_SESSION['cart_total'] = $grand_total;
-                    $_SESSION['cart_items_data'] = []; // Store item details
+                    $_SESSION['cart_items_data'] = []; 
 
-                    mysqli_data_seek($cart_res, 0); // Reset result pointer
+                    mysqli_data_seek($cart_res, 0); 
                     while($row = mysqli_fetch_assoc($cart_res)) {
                         $_SESSION['cart_items_data'][] = [
                             'title' => $row['title'],

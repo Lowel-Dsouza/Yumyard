@@ -159,7 +159,7 @@ table tr td
   .login input[type="submit"] {
     width: 100%;
     height: 40px;
-    background-color: #ffa07a; /* Orange color */
+    background-color: #ffa07a; 
     color: #fff;
     padding: 10px;
     border: none;
@@ -168,17 +168,17 @@ table tr td
   }
   
   .login input[type="submit"]:hover {
-    background-color: #ff9900; /* Darker orange on hover */
+    background-color: #ff9900; 
   }
   
   .success {
-    color: #008000; /* Green color */
+    color: #008000; 
     font-weight: bold;
     margin-bottom: 20px;
   }
   
   .error {
-    color: #ff0000; /* Red color */
+    color: #ff0000; 
     font-weight: bold;
     margin-bottom: 20px;
   }

@@ -12,17 +12,17 @@ if(isset($_POST['submit'])) {
     $food_id = $_POST['food_id'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $user_id = $_SESSION['user_id']; // Make sure user_id is stored in session during login
+    $user_id = $_SESSION['user_id']; 
 
-    // Check if item already exists in cart
+   
     $check_cart = "SELECT * FROM tbl_shopping_cart WHERE user_id = '$user_id' AND food_id = '$food_id'";
     $cart_result = mysqli_query($conn, $check_cart);
 
     if(mysqli_num_rows($cart_result) > 0) {
-        // Update quantity if item exists
+        
         $update_cart = "UPDATE tbl_shopping_cart SET quantity = quantity + $quantity WHERE user_id = '$user_id' AND food_id = '$food_id'";
     } else {
-        // Insert new item
+       
         $update_cart = "INSERT INTO tbl_shopping_cart (user_id, food_id, quantity, price) 
                        VALUES ('$user_id', '$food_id', '$quantity', '$price')";
     }

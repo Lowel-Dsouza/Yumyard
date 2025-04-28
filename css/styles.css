@@ -1,10 +1,4 @@
-/* 
-    Author: Vijay Thapa;
-    Theme: Restaurant Food Order;
-    version: 1.0;
-*/
-
-/* CSS for All */
+ 
 *{
     margin: 0 0;
     padding: 0 0;
@@ -22,7 +16,7 @@
 
    
 }
-/* Cart Page Styles */
+
 .tbl-cart {
     width: 100%;
     border-collapse: collapse;
@@ -200,7 +194,6 @@ fieldset{
 }
 
 
-/* CSSS for navbar section */
 
 .logo{
     width: 10%;
@@ -223,7 +216,6 @@ fieldset{
 }
 
 
-/* CSS for Food SEarch Section */
 
 .food-search{
     background-image: url(../images/backg.jpg);
@@ -242,7 +234,7 @@ fieldset{
 }
 
 
-/* CSS for Categories */
+
 .categories{
     padding: 4% 0;
 }
@@ -254,7 +246,7 @@ fieldset{
 }
 
 
-/* CSS for Food Menu */
+
 .food-menu{
     background-color: #ced6e0;
     padding: 4% 0;
@@ -289,7 +281,7 @@ fieldset{
 }
 
 
-/* CSS for Social */
+
 .social ul{
     list-style-type: none;
 }
@@ -298,7 +290,7 @@ fieldset{
     padding: 1%;
 }
 
-/* for Order Section */
+
 .order{
     width: 50%;
     margin: 0 auto;
@@ -373,7 +365,7 @@ fieldset{
         width: 100%;
     }
 }
-/* Cart Icon Styles */
+
 .fa-shopping-cart {
     margin-right: 5px;
 }
@@ -387,7 +379,6 @@ fieldset{
     margin-left: 5px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .menu ul li a {
         padding: 10px 15px;
@@ -402,7 +393,7 @@ fieldset{
         font-size: 10px;
     }
 }
-/* Cart Page Styles */
+
 .tbl-full {
     width: 100%;
     border-collapse: collapse;
@@ -441,7 +432,7 @@ fieldset{
 .text-right {
     text-align: right;
 }
-/* Cart Page Styles */
+
 .tbl-full {
     width: 100%;
     border-collapse: collapse;
@@ -481,7 +472,7 @@ fieldset{
     text-align: right;
 }
 .order-box{
-    background:#ffffff;        /* was #f1f2f6 */
+    background:#ffffff;      
     padding:15px;
     margin-bottom:20px;
     border-radius:8px;

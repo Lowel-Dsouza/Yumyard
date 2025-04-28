@@ -15,6 +15,7 @@
             <th>Order Date</th>
             <th>Status</th>
             <th>Customer name</th>
+            <th>Payment mode</th>
             <th>Contact</th>
             <th>Email</th>
             <th>Address</th>
@@ -38,6 +39,7 @@
                 $order_date=$row['order_date'];
                 $status=$row['status'];
                 $customer_name=$row['customer_name'];
+                $payment_mode=$row['payment_mode'];
                 $customer_contact=$row['customer_contact'];
                 $customer_email=$row['customer_email'];
                 $customer_address=$row['customer_address'];
@@ -71,6 +73,7 @@
                             ?>
                      </td>
                     <td><?php echo $customer_name;  ?></td>
+                    <td><?php echo $payment_mode;  ?></td>
                     <td><?php echo $customer_contact;  ?></td>
                     <td><?php echo $customer_email;  ?></td>
                     <td><?php echo $customer_address;  ?></td>

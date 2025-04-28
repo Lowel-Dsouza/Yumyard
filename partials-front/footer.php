@@ -1,4 +1,4 @@
-<!-- social Section Starts Here -->
+
 <section class="social">
         <div class="container text-center">
             <ul>
@@ -14,9 +14,7 @@
             </ul>
         </div>
     </section>
-    <!-- social Section Ends Here -->
-
-    <!-- footer Section Starts Here -->
+   
     
 
 </body>

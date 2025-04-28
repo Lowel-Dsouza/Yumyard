@@ -3,18 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Important to make website responsive -->
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Website</title>
 
-    <!-- Link our CSS file -->
+   
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Font Awesome for cart icon -->
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body style="background-color:#dfe4ea;">
-    <!-- Navbar Section Starts Here -->
     <section class="navbar">
         <div class="container">
             <div class="logo">
@@ -26,13 +25,13 @@
             <div class="menu text-right">
                 <ul>
                     <li>
-                        <a href="<?php echo SITEURL; ?>">Home</a>
+                        <a href="<?php echo SITEURL; ?>"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>categories.php">Categories</a>
+                        <a href="<?php echo SITEURL; ?>categories.php"><i class="fas fa-th-list"></i> Categories</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>foods.php">Foods</a>
+                        <a href="<?php echo SITEURL; ?>foods.php"><i class="fas fa-hamburger"></i> Foods</a>
                     </li>
                     
                     <?php if(isset($_SESSION['username'])): ?>
@@ -40,7 +39,7 @@
                             <a href="<?php echo SITEURL; ?>cart.php">
                                 <i class="fas fa-shopping-cart"></i> Cart
                                 <?php
-                                // Get cart item count
+                                
                                 if(isset($_SESSION['user_id'])) {
                                     $user_id = $_SESSION['user_id'];
                                     $cart_count = mysqli_query($conn, "SELECT SUM(quantity) as total FROM tbl_shopping_cart WHERE user_id = $user_id");
@@ -55,17 +54,16 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SITEURL; ?>my-orders.php">My Orders</a>
+                            <a href="<?php echo SITEURL; ?>my-orders.php"><i class="fas fa-box"></i> My Orders</a>
                         </li>
 
-                        <li><a href="<?php echo SITEURL; ?>logout.php">Logout</a></li>
+                        <li><a href="<?php echo SITEURL; ?>logout.php"> <i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     <?php else: ?>
-                        <li><a href="<?php echo SITEURL; ?>login.php">Login</a></li>
-                        <li><a href="<?php echo SITEURL; ?>signup.php">Sign Up</a></li>
+                        <li><a href="<?php echo SITEURL; ?>login.php"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li><a href="<?php echo SITEURL; ?>signup.php"><i class="fas fa-user-plus"></i> Sign Up</a></li>
                     <?php endif; ?>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                    <li><a href="<?php echo SITEURL; ?>contact.php"><i class="fas fa-phone"></i> Contact</a></li>
+
                 </ul>
             </div>
 

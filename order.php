@@ -2,7 +2,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php'; // Make sure this path is correct
+require 'vendor/autoload.php'; 
 
 if(!isset($_SESSION['username'])) {
     $_SESSION['login_required'] = "Please log in to place an order.";
@@ -146,7 +146,7 @@ if(!$cart_mode && isset($_GET['food_id'])) {
             }
 
             if(isset($_POST['cart_mode']) && $_POST['cart_mode'] == "1") {
-                // Cart checkout mode
+               
                 $cart_items = $_SESSION['cart_items_data'] ?? [];
                 $grand_total = $_POST['grand_total'] ?? 0;
 
@@ -187,14 +187,14 @@ if(!$cart_mode && isset($_GET['food_id'])) {
                     mysqli_query($conn, $sql_card);
                 }
 
-                // Clear cart
+               
                 $user_id = $_SESSION['user_id'];
                 mysqli_query($conn, "DELETE FROM tbl_shopping_cart WHERE user_id = $user_id");
 
                 unset($_SESSION['cart_items_data']);
                 unset($_SESSION['cart_total']);
             } else {
-                // Single item order
+              
                 $food = $_POST['food'];
                 $price = $_POST['price'];
                 $qty = $_POST['qty'];
@@ -236,7 +236,7 @@ if(!$cart_mode && isset($_GET['food_id'])) {
             }
 
             if($res2 == true) {
-                // Prepare email content for both cart and single item orders
+               
                 if(isset($_POST['cart_mode']) && $_POST['cart_mode'] == "1") {
                     $order_summary = "";
                     foreach($cart_items as $item) {
@@ -248,11 +248,11 @@ if(!$cart_mode && isset($_GET['food_id'])) {
                     $grand_total = $total;
                 }
             
-                // Create PHPMailer instance
+               
                 $mail = new PHPMailer(true);
                 
                 try {
-                    // Server settings
+                 
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
@@ -261,16 +261,16 @@ if(!$cart_mode && isset($_GET['food_id'])) {
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $mail->Port = 465;
                     
-                    // Recipients
+                  
                     $mail->setFrom('noreply@yumyard.com', 'Yum Yard');
                     $mail->addAddress($customer_email, $customer_name);
                     $mail->addReplyTo('support@yumyard.com', 'Support');
                     
-                    // Content
+                 
                     $mail->isHTML(true);
                     $mail->Subject = 'Thank you for your order - Yum Yard';
                     
-                    // HTML email body
+                   
                     $mail->Body = "
                     <html>
                     <head>
@@ -299,7 +299,7 @@ if(!$cart_mode && isset($_GET['food_id'])) {
                     </html>
                     ";
                     
-                    // Plain text version
+                  
                     $mail->AltBody = "Thank you for your order, $customer_name!\n\n" .
                                      "Order Summary:\n" .
                                      "$order_summary\n" .

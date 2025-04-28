@@ -2,7 +2,7 @@
 include('partials/menu.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php'; // Path to autoload.php
+require 'vendor/autoload.php'; 
 ?>
 
 <div class="main-content">
@@ -35,7 +35,7 @@ require 'vendor/autoload.php'; // Path to autoload.php
                     $price_to_store = $row['price'];
                 } else {
                     $qty = 1;
-                    $price_to_store = $row['total']; // Because cart order total is already final
+                    $price_to_store = $row['total']; 
                 }
                 
 
@@ -65,7 +65,7 @@ require 'vendor/autoload.php'; // Path to autoload.php
                 <tr>
                     <td>Price:</td>
                     <?php
-                        $price_to_store = is_numeric($qty) ? $price : $row['total']; // <- Use stored total if cart
+                        $price_to_store = is_numeric($qty) ? $price : $row['total']; 
                     ?>
                     <input type="hidden" name="price" value="<?php echo $price_to_store; ?>">
 
@@ -132,7 +132,7 @@ require 'vendor/autoload.php'; // Path to autoload.php
             $id=$_POST['id'];
             $price=$_POST['price'];
             $qty = $_POST['qty'];
-            $old_status = $status; // Get the old status before update
+            $old_status = $status; 
 
             $total = $price * $qty;
             
@@ -156,13 +156,13 @@ require 'vendor/autoload.php'; // Path to autoload.php
             
             if($res2==true)
             {
-                // Only send email if status changed
+                
                 if($old_status != $new_status) {
-                    // Create PHPMailer instance
+                   
                     $mail = new PHPMailer(true);
                     
                     try {
-                        // Server settings (use your existing SMTP credentials)
+                        
                         $mail->isSMTP();
                         $mail->Host = 'smtp.gmail.com';
                         $mail->SMTPAuth = true;
@@ -171,16 +171,16 @@ require 'vendor/autoload.php'; // Path to autoload.php
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                         $mail->Port = 465;
                         
-                        // Recipients
+                    
                         $mail->setFrom('noreply@yumyard.com', 'Yum Yard');
                         $mail->addAddress($customer_email, $customer_name);
                         $mail->addReplyTo('support@yumyard.com', 'Support');
                         
-                        // Content
+                       
                         $mail->isHTML(true);
                         $mail->Subject = 'Your Order Status Update - Yum Yard';
                         
-                        // HTML email body
+                    
                         $mail->Body = "
                         <html>
                         <head>
@@ -211,7 +211,7 @@ require 'vendor/autoload.php'; // Path to autoload.php
                         </html>
                         ";
                         
-                        // Plain text version
+                     
                         $mail->AltBody = "Order Status Update\n\n" .
                                          "Dear $customer_name,\n\n" .
                                          "The status of your order has been updated.\n\n" .
@@ -239,7 +239,7 @@ require 'vendor/autoload.php'; // Path to autoload.php
             }
         }
 
-        // Helper function to get color based on status
+       
         function getStatusColor($status) {
             switch($status) {
                 case 'Ordered': return '#000000';

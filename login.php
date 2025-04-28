@@ -6,30 +6,30 @@ if(isset($_SESSION['username'])) {
     exit();
 }
 
-// Handle form submission
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     
-    // Fetch user from database
+    
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
     
     if(mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
         
-        // Check if user is verified
+        
         if(!$row['is_verified']) {
             $error = "Account not verified. Please check your email for verification.";
         }
-        // Verify password
+       
         elseif(password_verify($password, $row['password'])) {
-            // Set session variables
+          
             $_SESSION['username'] = $row['first_name'] . ' ' . $row['last_name'];
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email'] = $row['email'];
             
-            // Redirect to home page
+           
             header("Location: ".SITEURL."index.php");
             exit();
         } else {

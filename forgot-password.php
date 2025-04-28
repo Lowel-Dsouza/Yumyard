@@ -4,33 +4,32 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
-// Initialize variables
+
 $error = '';
 $success = '';
 $show_otp_form = false;
 
-// Handle email submission
 if(isset($_POST['submit_email'])) {
     $email = $_POST['email'];
     
-    // Check if email exists
+ 
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
     
     if(mysqli_num_rows($result) == 1) {
-        // Generate OTP (6 digits)
+     
         $otp = rand(100000, 999999);
         $otp_expiry = date('Y-m-d H:i:s', strtotime('+15 minutes'));
         
-        // Store OTP in database
+  
         $update_sql = "UPDATE users SET otp = '$otp', otp_expiry = '$otp_expiry' WHERE email = '$email'";
         mysqli_query($conn, $update_sql);
         
-        // Send OTP via email
+       
         $mail = new PHPMailer(true);
         
         try {
-            // Server settings
+          
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
@@ -39,11 +38,11 @@ if(isset($_POST['submit_email'])) {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
             
-            // Recipients
+           
             $mail->setFrom('noreply@yumyard.com', 'Yum Yard');
             $mail->addAddress($email);
             
-            // Content
+            
             $mail->isHTML(true);
             $mail->Subject = 'Password Reset OTP';
             $mail->Body = "
@@ -77,20 +76,18 @@ if(isset($_POST['submit_email'])) {
     }
 }
 
-// Handle OTP verification and password reset
-// Handle OTP verification and password reset
+
 if(isset($_POST['submit_otp'])) {
     $otp = $_POST['otp'];
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
     $email = $_SESSION['reset_email'];
-    
-    // Validate passwords match
+  
     if($new_password != $confirm_password) {
         $error = "Passwords do not match!";
         $show_otp_form = true;
     } else {
-        // Check OTP with more robust query
+        
         $current_time = date('Y-m-d H:i:s');
         $sql = "SELECT * FROM users 
                 WHERE email = '$email' 
@@ -100,7 +97,7 @@ if(isset($_POST['submit_otp'])) {
         $result = mysqli_query($conn, $sql);
         
         if(mysqli_num_rows($result) == 1) {
-            // Update password
+           
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
             $update_sql = "UPDATE users SET 
                           password = '$hashed_password', 
@@ -116,7 +113,7 @@ if(isset($_POST['submit_otp'])) {
                 $show_otp_form = true;
             }
         } else {
-            // More detailed error message
+           
             $sql_check = "SELECT otp_expiry FROM users WHERE email = '$email'";
             $res = mysqli_query($conn, $sql_check);
             $row = mysqli_fetch_assoc($res);

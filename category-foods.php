@@ -15,7 +15,7 @@ else
 }
 
 ?>
-    <!-- fOOD sEARCH Section Starts Here -->
+    
     <section class="food-search text-center">
         <div class="container">
             
@@ -23,11 +23,11 @@ else
 
         </div>
     </section>
-    <!-- fOOD sEARCH Section Ends Here -->
+    
 
 
 
-    <!-- fOOD MEnu Section Starts Here -->
+  
     <section class="food-menu">
         <div class="container">
             <h2 class="text-center">Food Menu</h2>
@@ -115,6 +115,6 @@ else
         </div>
 
     </section>
-    <!-- fOOD Menu Section Ends Here -->
+    
 
     <?php include('partials-front/footer.php'); ?>

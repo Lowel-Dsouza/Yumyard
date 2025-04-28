@@ -4,18 +4,17 @@
 include('config/constants.php');
 
 
-// Check if user came from signup
+
 if(!isset($_SESSION['signup_data'])) {
     header("Location: signup.php");
     exit();
 }
 
-// Handle OTP verification
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $entered_otp = $_POST['otp'];
     $email = $_SESSION['signup_data']['email'];
-    
-    // Get stored OTP from database
+
     $query = "SELECT otp, otp_expiry FROM users WHERE email = '$email'";
     $result = mysqli_query($conn, $query);
     
@@ -24,29 +23,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stored_otp = $row['otp'];
         $otp_expiry = $row['otp_expiry'];
         
-        // Check if OTP is expired
+        
         if(strtotime($otp_expiry) < time()) {
             $errors[] = "OTP has expired. Please sign up again.";
-            // Clean up expired registration
+           
             mysqli_query($conn, "DELETE FROM users WHERE email = '$email'");
             unset($_SESSION['signup_data']);
         } 
-        // Check if OTP matches
+       
         elseif($entered_otp == $stored_otp) {
-            // Mark user as verified
+           
             mysqli_query($conn, "UPDATE users SET is_verified = 1, otp = NULL, otp_expiry = NULL WHERE email = '$email'");
-            
-            // Get user data
+
             $user_query = "SELECT * FROM users WHERE email = '$email'";
             $user_result = mysqli_query($conn, $user_query);
             $user = mysqli_fetch_assoc($user_result);
             
-            // Set session
+       
             $_SESSION['username'] = $user['first_name'] . ' ' . $user['last_name'];
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
             
-            // Redirect to home page
             header("Location: ".SITEURL."index.php");
             exit();
         } else {
@@ -71,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <h2>Verify OTP</h2>
 
-        <!-- ADD TIMER HERE -->
+        
         <div id="timer" style="font-size: 18px; color: red; margin-bottom: 10px;"></div>
         
         <?php if(!empty($errors)): ?>
@@ -90,15 +87,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" id="otp" name="otp" required maxlength="6" pattern="\d{6}">
             </div>
             
-            <button type="submit" id="verify-btn">Verify</button> <!-- Add id to button -->
+            <button type="submit" id="verify-btn">Verify</button>
         </form>
 
         <p>Didn't receive OTP? <a href="resend-otp.php">Resend</a></p>
     </div>
 
-    <!-- ADD TIMER SCRIPT HERE -->
+    
     <script>
-    let timeLeft = 150; // 2 minutes 30 seconds
+    let timeLeft = 150; 
 
     function startTimer() {
         const timerElement = document.getElementById('timer');
@@ -119,7 +116,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 clearInterval(timerInterval);
                 timerElement.innerHTML = "OTP expired. Please resend.";
 
-                // Disable verify button after time is up
+               
                 verifyButton.disabled = true;
                 verifyButton.style.backgroundColor = "grey";
                 verifyButton.style.cursor = "not-allowed";

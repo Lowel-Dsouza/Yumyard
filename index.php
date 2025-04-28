@@ -1,6 +1,6 @@
 <?php include('partials-front/menu.php');  ?>
 
-    <!-- fOOD sEARCH Section Starts Here -->
+   
     <section class="food-search text-center">
         <div class="container">
             
@@ -11,7 +11,7 @@
 
         </div>
     </section>
-    <!-- fOOD sEARCH Section Ends Here -->
+
 
     <?php
     if(isset($_SESSION['order']))
@@ -22,7 +22,7 @@
 
     ?>
 
-    <!-- CAtegories Section Starts Here -->
+ 
     <section class="categories">
         <div class="container">
             <h2 class="text-center">Explore Foods</h2>
@@ -61,6 +61,7 @@
 
                                     <h3 class="float-text text-white"><?php echo $title; ?></h3>
                                 </div>
+                            
                     </a>
 
 
@@ -79,18 +80,21 @@
 
             <div class="clearfix"></div>
         </div>
+        <p class="text-center">
+        <a href="categories.php">See All Categories</a>
+    </p>
     </section>
-    <!-- Categories Section Ends Here -->
+         
 
 
 
-<!-- Food Menu Section Starts Here -->
+
 <section class="food-menu">
     <div class="container">
         <h2 class="text-center">Food Menu</h2>
 
         <?php 
-        // Display foods that are active
+       
         $sql = "SELECT * FROM tbl_food WHERE active='Yes' LIMIT 6";
         $res = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($res);
@@ -150,7 +154,10 @@
 
         <div class="clearfix"></div>
     </div>
+    <p class="text-center">
+        <a href="foods.php">See All Foods</a>
+    </p>
 </section>
-<!-- Food Menu Section Ends Here -->
+
 
     <?php include('partials-front/footer.php');

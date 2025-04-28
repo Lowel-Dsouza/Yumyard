@@ -8,7 +8,6 @@ if(!isset($_SESSION['username'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Get cart items to calculate total
 $cart_query = "SELECT SUM(price * quantity) as total 
               FROM tbl_shopping_cart 
               WHERE user_id = $user_id";
@@ -22,15 +21,15 @@ if($grand_total <= 0) {
     exit();
 }
 
-// Handle checkout submission
+
 if(isset($_POST['submit'])) {
-    // Get delivery details
+ 
     $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     
-    // Insert order
+ 
     $order_date = date("Y-m-d H:i:s");
     $status = "Ordered";
     
@@ -42,7 +41,7 @@ if(isset($_POST['submit'])) {
     if($order_res) {
         $order_id = mysqli_insert_id($conn);
         
-        // Move cart items to order items
+    
         $cart_items_query = "SELECT * FROM tbl_shopping_cart WHERE user_id = $user_id";
         $cart_items_res = mysqli_query($conn, $cart_items_query);
         
@@ -56,7 +55,7 @@ if(isset($_POST['submit'])) {
             mysqli_query($conn, $insert_item);
         }
         
-        // Clear cart
+      
         $clear_cart = "DELETE FROM tbl_shopping_cart WHERE user_id = $user_id";
         mysqli_query($conn, $clear_cart);
         
