@@ -109,24 +109,24 @@ $res = mysqli_query($conn, $sql);
             <div class="order-box" style="display:flex; gap:20px; margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:5px;">
                 <!-- Thumbnail -->
                 <div style="flex:0 0 110px;">
-                <?php 
-// If multiple food items, display cart icon
-if (strpos($row['qty'], 'Multiple') !== false) { ?>
-    <img src="<?php echo SITEURL;?>images/cart.png"
-         alt="Cart Order" width="110" class="img-curve">
-<?php } else { 
-    // Single food item order
-    if($row['image_name'] !== ''){ ?>
-        <img src="<?php echo SITEURL;?>images/food/<?php echo $row['image_name'];?>"
-             alt="<?php echo $row['food'];?>"
-             width="110" class="img-curve">
-    <?php }else{ ?>
-        <img src="<?php echo SITEURL;?>images/placeholder.png"
-             alt="No image" width="110" class="img-curve">
-    <?php } 
-} ?>
+            <?php 
+            // If multiple food items, display cart icon
+            if (strpos($row['food'], "\n") !== false) { ?>
+                <img src="<?php echo SITEURL;?>images/cart.png"
+                    alt="Cart Order" width="110" class="img-curve">
+            <?php } else { 
+                // Single food item order
+                if($row['image_name'] !== ''){ ?>
+                    <img src="<?php echo SITEURL;?>images/food/<?php echo $row['image_name'];?>"
+                        alt="<?php echo $row['food'];?>"
+                        width="110" class="img-curve">
+                <?php } else { ?>
+                    <img src="<?php echo SITEURL;?>images/placeholder.png"
+                        alt="No image" width="110" class="img-curve">
+                <?php } 
+            } ?>
+        </div>
 
-                </div>
         
                 <!-- Details -->
                 <div style="flex:1;">
