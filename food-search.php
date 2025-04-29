@@ -66,7 +66,7 @@
                     <br>
 
                     <div class="food-actions">
-                            <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                            <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a><br><br>
                             
                             <?php if(isset($_SESSION['username'])): ?>
                                 <form action="<?php echo SITEURL; ?>add-to-cart.php" method="POST" class="add-to-cart-form">
